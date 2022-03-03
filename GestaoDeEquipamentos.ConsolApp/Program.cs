@@ -137,17 +137,20 @@ namespace GestaoDeEquipamentos.ConsolApp
             Console.Clear();
             Console.WriteLine("Visualizando equipamentos");
 
-            for (int posicao = 1; posicao < posicaoEquipamento; posicao++)
+            for (int posicao = 1; posicao < nomesEquipamentos.Length; posicao++)
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("\nNúmero no índice: " + posicao);
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\nNome: " + nomesEquipamentos[posicao]);
-                Console.WriteLine("Preço: " + precosEquipamentos[posicao]);
-                Console.WriteLine("Número de Série: " + numerosSerieEquipamentos[posicao]);
-                Console.WriteLine("Data de Fabricação: " + datasEquipamentos[posicao]);
-                Console.WriteLine("Fabricante: " + fabricantesEquipamentos[posicao]);
-                Console.ResetColor();
+                if (nomesEquipamentos[posicao] != null && nomesEquipamentos[posicao] != "")
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("\nNúmero no índice: " + posicao);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("\nNome: " + nomesEquipamentos[posicao]);
+                    Console.WriteLine("Preço: " + precosEquipamentos[posicao]);
+                    Console.WriteLine("Número de Série: " + numerosSerieEquipamentos[posicao]);
+                    Console.WriteLine("Data de Fabricação: " + datasEquipamentos[posicao]);
+                    Console.WriteLine("Fabricante: " + fabricantesEquipamentos[posicao]);
+                    Console.ResetColor();
+                }
             }
         }
         static void EditarEquipamentos()
@@ -155,7 +158,7 @@ namespace GestaoDeEquipamentos.ConsolApp
             Console.Clear();
             Console.WriteLine("Editando equipamentos:\n");
 
-            /*VisualizarEquipamentos();            
+            VisualizarEquipamentos();            
 
             Console.WriteLine("\nDigite o número do equipamento que você deseja editar: ");
             posicaoEquipamento = Convert.ToInt32(Console.ReadLine());
@@ -169,13 +172,27 @@ namespace GestaoDeEquipamentos.ConsolApp
             Console.Write("Digite a nova data de fabricação do produto: ");
             datasEquipamentos[posicaoEquipamento] = Console.ReadLine();
             Console.Write("Digite o novo fabricante do produto: ");
-            fabricantesEquipamentos[posicaoEquipamento] = Console.ReadLine();*/
+            fabricantesEquipamentos[posicaoEquipamento] = Console.ReadLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nEquipamento editado com sucesso.");
+            Console.ResetColor();
         }
         static void ExcluirEquipamentos()
         {
+            Console.Clear();
             Console.WriteLine("Excluindo Equipamentos\n");
 
-            Console.ReadLine();
+            VisualizarEquipamentos();
+
+            Console.WriteLine("\nDigite o número do equipamento que você deseja excluir: ");
+            posicaoEquipamento = Convert.ToInt32(Console.ReadLine());
+
+            nomesEquipamentos[posicaoEquipamento] = null;
+            precosEquipamentos[posicaoEquipamento] = 0;
+            numerosSerieEquipamentos[posicaoEquipamento] = null;
+            datasEquipamentos[posicaoEquipamento] = null;
+            fabricantesEquipamentos[posicaoEquipamento] = null;
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nEquipamento excluído com sucesso.");
